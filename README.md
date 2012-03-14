@@ -1,4 +1,4 @@
-# WeArePixels | TUMBLR BASE TEMPLATE
+# WeArePixels | Tumblr Boilerplate
 
 Welcome to the We Are Pixels base template.
 __NOTE : This is still very much a work in progress... use at own risk!__
