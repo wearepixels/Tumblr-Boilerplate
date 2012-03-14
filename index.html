@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="{block:English}en{/block:English}{block:French}fr{/block:French}{block:German}de{/block:German}{block:Japanese}ja{/block:Japanese}{block:Italian}it{/block:Italian}{block:Spanish}es{/block:Spanish}{block:Polish}pl{/block:Polish}"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="{block:English}en{/block:English}{block:French}fr{/block:French}{block:German}de{/block:German}{block:Japanese}ja{/block:Japanese}{block:Italian}it{/block:Italian}{block:Spanish}es{/block:Spanish}{block:Polish}pl{/block:Polish}"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="{block:English}en{/block:English}{block:French}fr{/block:French}{block:German}de{/block:German}{block:Japanese}ja{/block:Japanese}{block:Italian}it{/block:Italian}{block:Spanish}es{/block:Spanish}{block:Polish}pl{/block:Polish}"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="{block:English}en{/block:English}{block:French}fr{/block:French}{block:German}de{/block:German}{block:Japanese}ja{/block:Japanese}{block:Italian}it{/block:Italian}{block:Spanish}es{/block:Spanish}{block:Polish}pl{/block:Polish}"> <!--<![endif]-->
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#">
+
+	<!--
+   ***********************
+   TUMBLR TEMPLATE v0.0.1
+   WeArePixels.net
+   *********************** 
+   -->
+   	<!-- general meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1" />
+	<meta name="author" content="We Are Pixels - http://wearepixels.net | @stylehatch">
+	<meta name="copyright" content="Swell Theme - Copyright Style Hatch &amp; New Ezra LLC 2011. All Rights Reserved." />
+
+	<!-- OpenGraph -->
+	<meta property="og:site_name" content="{Title}"/>
+	<meta property="og:title" content="{Title}"/>
+	<meta property="og:type" content="blog"/>
+	{block:Description}<meta property="og:description" content="{MetaDescription}"/>{/block:Description}
+	<meta property="og:image" content="{PortraitURL-128}"/>
+
+	<!-- title & desc -->
+	<title>{Title}{block:PostSummary} &mdash; {PostSummary}{/block:PostSummary}</title>
+	{block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
+
+	<!-- icons -->
+	<link rel="apple-touch-icon" href="{PortraitURL-128}">
+	<link rel="shortcut icon" href="{Favicon}">
+
+	<!-- rss -->
+	<link rel="alternate" type="application/rss+xml" href="{RSS}">
+
+	<!-- the theme css! -->
+	<!--  === upload to tumblr static === -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- ================================ -->
+
+	<!-- custom css? -->
+	<style type="text/css">
+		{CustomCSS}
+	</style>
+
+	<!-- modernizer from tumblr -->
+	<script src="http://static.tumblr.com/dmnrdq5/qwYm0uv0a/modernizr-2.5.3.min.js"></script>
+
+
+	<!-- ======================   VARIABLES    ========================= -->
+
+	<!-- colors -->
+    <meta name="color:DemoColor" content="#555555"/>
+
+    <!-- fonts -->
+    <meta name="font:DemoFont" content="Helvetica Neue"/>
+
+    <!-- booleans -->
+    <meta name="if:DemoBoolean" content="1"/>
+
+    <meta name="if:Show Search" content="1"/>
+    <meta name="if:Show Latest Tweets Widget" content="0"/>
+    <meta name="if:Show About Widget" content="1"/>
+    <meta name="if:Show Stuff I Like Widget" content="1"/>
+
+    <!-- images -->
+    <meta name="image:Demo" content=""/>
+
+    <!-- text -->
+    <meta name="text:DemoText" content="anything"/>
+
+    <meta name="text:Number of Tweets" content="5"/>
+    <meta name="text:Google Analytics ID" content="" />
+    <meta name="text:Disqus Shortname" content="" />
+
+</head>
+<body>
+
+	<!-- ======================     CONTENT    ======================== -->
+	<div class="container" id="main-container">
+		
+		<header id="header" class="">
+			<h1>
+                {block:IfHeaderImage}<a href="/"><img src="{image:Header}" alt="{Title}" /></a>{/block:IfHeaderImage}
+                {block:IfNotHeaderImage}<a href="/">{Title}</a>{/block:IfNotHeaderImage}
+            </h1>
+
+            <nav>
+    			<ul>
+                    <li><a href="/">{lang:Home}</a></li>
+                    {block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
+                    {block:AskEnabled}<li class="ask"><a href="/ask" class="page">{AskLabel}</a></li>{/block:AskEnabled}
+                    {block:SubmissionsEnabled}<li class="submit"><a href="/submit" class="page">{SubmitLabel}</a></li>{/block:SubmissionsEnabled}
+                    <li class="archive"><a href="/archive">{lang:Archive}</a></li>
+                    <li class="mobile"><a href="/mobile">{lang:Mobile}</a></li>
+                    <li class="rss"><a href="{RSS}">RSS</a></li>
+                </ul>
+            </nav>		
+		</header><!-- /header -->	
+		
+		<div id="content">
+			
+			<!-- ===== SEARCH ====== -->
+			{block:SearchPage}
+			<p>{SearchResultCount} result(s) for <a href="{URLSafeSearchQuery}">{SearchQuery}</a></p>
+			{block:NoSearchResults}<p>No results found for {SearchQuery}</p>{/block:NoSearchResults}
+			{/block:SearchPage}
+
+			<!-- ===== DAY PAGES ===== -->
+			{block:DayPage}
+            <h2>{Month} {DayOfMonth}, {Year}</h2>
+       		{/block:DayPage}
+
+       		<!-- ===== TAG PAGES ===== -->
+       		{block:TagPage}
+            <h2>Posts tagged "{Tag}"</h2>
+        	{/block:TagPage}
+
+			<!-- ===== POSTS ===== -->
+			{block:Posts}
+			<article class="post {TagsAsClasses}">
+				{block:Date}
+				{block:NewDayDate}<p>{DayOfWeek}, {Month} {DayOfMonth}, {Year}</p>{/block:NewDayDate}
+
+				{block:SameDayDate}<p>{DayOfWeek}, {Month} {DayOfMonth}, {Year}</p>{/block:SameDayDate}
+				{/block:Date}
+
+				{block:Text}
+				<div class="text">
+					{block:Title}<a href="{Permalink}" class="permalink"><h3>{Title}</h3></a>{/block:Title}
+					{Body}
+				</div>
+				{/block:Text}
+
+				{block:Quote}
+				<div class="quote">
+					<blockquote class="words {Length}">&#8220;{Quote}&#8221;</blockquote>
+					{block:Source}<p class="source">&mdash; {Source}</p>{/block:Source}
+				</div>
+				{/block:Quote}
+
+				{block:Link}
+				<div class="link">
+					<h3><a href="{URL}" {Target}>{Name}</a></h3>
+					{block:Description}<div class="caption">{Description}</div>{/block:Description}
+				</div>
+				{/block:Link}
+
+				{block:Video}
+				<div class="video">
+					{Video-500}
+					{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+				</div>
+				{/block:Video}
+				{block:Audio}
+				<div class="audio">
+					{block:AlbumArt}<img src="{AlbumArtURL}" alt="">{/block:AlbumArt}							
+					{AudioPlayerBlack}
+					{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+				</div>
+				{/block:Audio}
+				{block:Photo}
+				<div class="photo">
+					<figure>
+						{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}
+						{block:Caption}<figcaption class="caption">{Caption}</figcaption>{/block:Caption}
+					</figure>
+				</div>
+				{/block:Photo}
+				{block:Photoset}
+                <div class="photoset">
+                	{block:Photos} 
+                    <figure>
+	                    {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}
+                    	{block:Caption}<figcaption class="caption">{Caption}</figcaption>{/block:Caption}
+                    </figure>
+                    {/block:Photos}
+                    
+                </div>
+                {/block:Photoset}
+				{block:Chat}
+				<div class="chat">
+					{block:Title}<h3>{Title}</h3>{/block:Title}
+					<ul class="conversation">
+						{block:Lines}
+						<li class="line {Alt}">
+							{block:Label}<span class="person">{Label}</span>{/block:Label}
+							<span class="person-said">{Line}</span>
+						</li>
+						{/block:Lines}
+					</ul>
+				</div>
+				{/block:Chat}
+				{block:Answer}
+				<div class="answer">
+					<img src="{AskerPortraitURL-40}">
+					{Asker}
+					{Question}
+					{Answer}
+				</div>
+				{/block:Answer}
+
+				<!-- ========= META ========= -->
+
+				<!-- tags meta -->
+				{block:HasTags}
+                <ul class="tags">
+                    {block:Tags}
+                    <li>
+                        <a href="{TagURL}">{Tag}</a>
+                    </li>
+                    {/block:Tags}
+                </ul>
+                {/block:HasTags}
+
+                <!-- rebloged meta -->
+                {block:RebloggedFrom} 
+                <div class="reblogged">
+                	{lang:Reblogged from} <a href="{ReblogParentURL}" title="{ReblogParentTitle}">{ReblogParentTitle}</a>
+                </div>
+                {/block:RebloggedFrom}
+                {block:NotReblog} 
+                {/block:NotReblog}
+
+                <!-- date meta -->
+                {block:Date} 
+                <div class="date">
+                	Posted {TimeAgo}
+                </div>
+                {/block:Date}
+
+				<!-- comments meta -->
+				{block:IfDisqusShortname}
+	            <div class="comments">
+	                <a href="{Permalink}#disqus_thread">0 comments</a>
+	            </div>
+	            {/block:IfDisqusShortname}
+				
+				<!-- notes meta -->
+				{block:NoteCount}
+                    <div class="note-count">
+                        <a href="{Permalink}#notes">{NoteCountWithLabel}</a>
+                    </div><!-- .note-count -->
+                {/block:NoteCount}
+
+			</article>
+
+			<!-- ===== COMMENTS ===== -->
+			{block:IfDisqusShortname}{block:Permalink}
+            <div id="disqus_thread"></div>
+            <script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+            <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+        	{/block:Permalink}{/block:IfDisqusShortname}
+
+        	<!-- ===== NOTES ===== -->
+            {block:PostNotes}{block:Permalink}
+            <div id="post-notes">{PostNotes}</div>
+            {/block:Permalink}{/block:PostNotes}
+
+			{/block:Posts}
+
+			<!-- ===== PERMALINK PAGINATION ===== -->
+			{block:PermalinkPagination}
+			<div class="pagination">
+				{block:PreviousPost}<a class="prev"href="{PreviousPost}">{lang:Previous post}</a>{/block:PreviousPost}
+				{block:NextPost}<a class="next" href="{NextPost}">{lang:Next post}</a>{/block:NextPost}
+			</div>
+			{/block:PermalinkPagination}
+
+			<!-- ===== PAGINATION ===== -->
+			{block:Pagination}
+			<div class="pagination">
+				{block:PreviousPage}<a class="prev" href="{PreviousPage}">{lang:Previous}</a>{/block:PreviousPage}
+
+				{block:JumpPagination length="5"}
+					{block:CurrentPage}<span class="current-page">{PageNumber}</span>{/block:CurrentPage}
+					{block:JumpPage}<a class="jump-page" href="{URL}">{PageNumber}</a>{/block:JumpPage}
+				{/block:JumpPagination}
+
+				{block:NextPage}<a class="next" href="{NextPage}">{lang:Next}</a>{/block:NextPage}
+			</div>
+			{/block:Pagination}
+
+		</div><!-- /content -->
+
+		<div id="sidebar">
+
+			<!-- ===== SEARCH ===== -->
+			{block:ShowSearch}
+			<div id="search">
+                <form action="/search" method="get">
+                    <input type="text" name="q" value="{SearchQuery}"/>
+                    <input type="submit" value="Search" class="search-button"/>
+                </form>
+            </div>	
+            {/block:ShowSearch}
+
+            <!-- ===== ABOUT WIDGET ===== -->
+            {block:IfShowAboutWidget}
+            <h3>{lang:About}</h3>
+            <div id="about" class="widget">
+                <img src="{PortraitURL-64}" alt="portrait" />
+                {block:Description}<div class="description"><p>{Description}</p></div>{/block:Description}
+            </div>
+            {/block:IfShowAboutWidget}
+
+            <!-- ===== LIKES ===== -->
+            {block:ShowStuffILikeWidget}{block:Likes}
+            <div id="likes_container">
+                <h2>{lang:Stuff I like}</h2>
+
+                {Likes limit="5" summarize="100" width="150"}
+
+                <a href="http://www.tumblr.com/liked/by/{Name}">
+                    {lang:See more stuff I like}
+                </a>
+            </div>
+        	{/block:ShowStuffILikeWidget}{/block:Likes}
+
+            <!-- ===== TWITTER ===== -->
+			{block:IndexPage}{block:IfShowLatestTweetsWidget}{block:Twitter}
+                <h3>{lang:Latest Tweets}</h3>
+                <div id="twitter" class="widget">
+                    <div id="tweets"></div> 
+                    <p><a href="http://twitter.com/{TwitterUsername}">{lang:Follow me}</a></p> 
+                </div>
+
+                <!-- @TODO tidy up! -->
+                <script type="text/javascript">
+                    function recent_tweets(data) {
+                        for (i=0; i<data.length; i++) {
+                            if (i<{text:Number of Tweets}) {
+                                document.getElementById("tweets").innerHTML = 
+                                    document.getElementById("tweets").innerHTML + 
+                                    '<a href="http://twitter.com/{TwitterUsername}/status/' + 
+                                    data[i].id + '"><div class="content">' + data[i].text + 
+                                    '</div></a>';
+                            }
+                        }
+                        document.getElementById("twitter").style.display = 'block';
+                    }
+                </script>
+            {/block:Twitter}{/block:IfShowLatestTweetsWidget}{/block:IndexPage}
+
+		</div><!-- /sidebar -->
+
+		<footer>
+			<div id="blog-name">
+				{title} &mdash; {CopyrightYears}
+			</div><!-- /blog-name -->
+			<div id="theme-by">
+				Theme by <a href="http://wearepixels.net" title="We Are Pixels">We Are Pixels</a>
+			</div><!-- /theme-by -->
+		</footer>
+
+	</div><!-- .container #main-container -->
+	<!-- ======================  END CONTENT   ======================== -->
+
+	<!-- ====================== START INCLUDES ======================== -->
+
+	<!-- jquery from google cdn -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+	<!-- tumblr twitter -->
+	{block:Twitter}<script type="text/javascript" src="/tweets.js"></script>{/block:Twitter}
+
+	<!-- the theme js -->
+	<!--  === upload to tumblr static === -->
+	<script src="js/plugins.js"></script>
+	<script src="js/script.js"></script>
+	<!-- ================================ -->
+
+	<!-- google analytics -->
+	{block:IfGoogleAnalyticsID}
+	<script>
+	    var _gaq=[['_setAccount','{text:Google Analytics ID}'],['_trackPageview']];
+	    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	    s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+	{block:IfGoogleAnalyticsID}
+
+	<!-- disquss -->
+	<!-- @TODO == tidy up -->
+	{blog:IfDisqusShortname}
+	<script type="text/javascript">
+	var disqus_shortname = '{text:Disqus Shortname}';
+	(function () {
+	  var s = document.createElement('script'); s.async = true;
+	  s.src = 'http://{text:Disqus Shortname}.disqus.com/count.js';
+	  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	}());
+	</script>
+	{/blog:IfDisqusShortname}
+	<!-- ====================== END INCLUDES ======================== -->
+</body>
+</html>
